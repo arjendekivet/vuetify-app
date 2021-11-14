@@ -1,23 +1,23 @@
 <template>
-  <v-app>
+  <v-app :theme="theme">
+    <v-btn @click="toggleTheme">toggle theme</v-btn>
     <v-main>
-      <HelloWorld/>
+      <router-view></router-view>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from 'vue'
 
 export default {
-  name: 'App',
+  setup() {
+    const theme = ref('light')
 
-  components: {
-    HelloWorld,
-  },
-
-  data: () => ({
-    //
-  }),
+    return {
+      theme,
+      toggleTheme: () => theme.value = theme.value === 'light' ? 'dark' : 'light'
+    }
+  }
 }
 </script>
